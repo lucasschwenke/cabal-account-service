@@ -7,14 +7,34 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    //env
+    implementation 'com.natpryce:konfig:1.6.10.0'
+
+    //injection
+    compile 'org.koin:koin-core:2.1.6'
+
+    //jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.3'
+
+    //vertx
     compile 'io.vertx:vertx-core:3.9.4'
     compile 'io.vertx:vertx-web:3.9.4'
     compile 'io.vertx:vertx-lang-kotlin:3.9.4'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    //database
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+
+    implementation 'org.jdbi:jdbi3-core:3.17.0'
+    implementation 'org.jdbi:jdbi3-kotlin:3.17.0'
+
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:8.4.1.jre11'
 }
 
 compileKotlin {
