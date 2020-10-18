@@ -1,0 +1,26 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+}
+
+group 'io.github.lucasschwenke.cabal.accountservice'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.vertx:vertx-core:3.9.4'
+    compile 'io.vertx:vertx-web:3.9.4'
+    compile 'io.vertx:vertx-lang-kotlin:3.9.4'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
