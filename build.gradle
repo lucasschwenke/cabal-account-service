@@ -31,6 +31,9 @@ dependencies {
     //database
     implementation 'com.zaxxer:HikariCP:3.4.5'
 
+    //javax
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
     implementation 'org.jdbi:jdbi3-core:3.17.0'
     implementation 'org.jdbi:jdbi3-kotlin:3.17.0'
 

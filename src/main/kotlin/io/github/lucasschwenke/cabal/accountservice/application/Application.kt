@@ -2,26 +2,20 @@ package io.github.lucasschwenke.cabal.accountservice.application
 
 import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
 import io.github.lucasschwenke.cabal.accountservice.application.config.getRoutes
-import io.github.lucasschwenke.cabal.accountservice.application.modules.applicationModules
+import io.github.lucasschwenke.cabal.accountservice.application.modules.loadModules
 import io.vertx.core.Vertx
 import org.koin.core.KoinComponent
-import org.koin.core.context.startKoin
 import org.koin.core.inject
 
 object Application : KoinComponent {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
+    private val authService: AuthService by inject()
 
     @JvmStatic
     fun start() {
         loadModules()
         loadServer()
-    }
-
-    private fun loadModules() {
-        startKoin {
-            modules(applicationModules)
-        }
     }
 
     private fun loadServer() {
@@ -37,6 +31,8 @@ object Application : KoinComponent {
                 println(it.cause())
             }
         }
+
+        authService.test()
     }
 }
 

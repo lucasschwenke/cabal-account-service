@@ -3,19 +3,19 @@ package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth
 import java.time.LocalDateTime
 
 data class AuthEntity(
-    val userNum: Int,
+    val userNum: Int? = null,
     val id: String,
     val password: String,
     val login: Int,
     val loginTime: LocalDateTime? = null,
     val logoutTime: LocalDateTime? = null,
     val authType: Int,
-    val playTime: Int,
+    val playTime: Int? = null,
     val identityNo: String? = null,
-    val loginEx: Int,
+    val loginEx: Int? = null,
     val lastIp: String? = null,
     val authKey: String? = null,
-    val nationCode: Int,
+    val nationCode: Int? = null,
     val createDate: LocalDateTime? = null,
     val email: String? = null,
     val ip: String? = null,
@@ -32,5 +32,5 @@ data class AuthEntity(
     val reset: Int? = null,
     val hash: String? = null,
     val banTime: String? = null,
-    val perg: String? = null
+    val perg: Int? = null
 )
