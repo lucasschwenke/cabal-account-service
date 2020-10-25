@@ -3,6 +3,8 @@ package io.github.lucasschwenke.cabal.accountservice.application
 import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
 import io.github.lucasschwenke.cabal.accountservice.application.config.getRoutes
 import io.github.lucasschwenke.cabal.accountservice.application.modules.loadModules
+import io.github.lucasschwenke.cabal.accountservice.domain.auth.Account
+import io.github.lucasschwenke.cabal.accountservice.domain.services.CreateAccountService
 import io.vertx.core.Vertx
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -10,7 +12,7 @@ import org.koin.core.inject
 object Application : KoinComponent {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
-    private val authService: AuthService by inject()
+    private val createAccountService: CreateAccountService by inject()
 
     @JvmStatic
     fun start() {
@@ -32,7 +34,14 @@ object Application : KoinComponent {
             }
         }
 
-        authService.test()
+       createAccountService.createAccount(
+           Account(
+               username = "Test",
+               password = "123mudar",
+               email = "test@test.com",
+               key = "adsasd"
+           )
+       )
     }
 }
 

@@ -2,10 +2,11 @@ package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.auth.Account
 import io.github.lucasschwenke.cabal.accountservice.domain.auth.Authentication
+import io.github.lucasschwenke.cabal.accountservice.domain.extensions.toMD5
 import io.github.lucasschwenke.cabal.accountservice.domain.extensions.toSHA1
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import org.jdbi.v3.core.Handle
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class AuthenticationService(
@@ -15,9 +16,9 @@ class AuthenticationService(
     fun createAuthentication(account: Account, handle: Handle): Authentication {
         val authentication = Authentication(
             username = account.username,
-            password = account.password.toSHA1(),
+            password = account.password,
             email = account.email,
-            hash = LocalDate.now().format(formatter).toString(),
+            hash = generateHash(),
             key = account.key,
             login = LOGIN_INITIAL_VALUE,
             authType = AUTH_TYPE_INITIAL_VALUE,
@@ -27,6 +28,12 @@ class AuthenticationService(
 
         return authRepository.insertAuth(authentication, handle)
     }
+
+    private fun generateHash() = StringBuilder("[")
+        .append(LocalDateTime.now().format(formatter).toString())
+        .append("]")
+        .toString()
+        .toMD5()
 
     companion object {
         private const val LOGIN_INITIAL_VALUE = 0

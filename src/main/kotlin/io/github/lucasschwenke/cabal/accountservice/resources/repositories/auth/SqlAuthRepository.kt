@@ -21,7 +21,7 @@ class SqlAuthRepository : AuthRepository {
             identityNo = authentication.identityNo
         )
 
-        val query = ClasspathSqlLocator.create().getResource("sql.auth.insert_auth")
+        val query = ClasspathSqlLocator.create().locate("sql.auth.insert_auth")
         val userNum = handle.createUpdate(query)
             .bind("id", authEntity.id)
             .bind("password", authEntity.password)
@@ -30,7 +30,7 @@ class SqlAuthRepository : AuthRepository {
             .bind("key", authEntity.key)
             .bind("login", authEntity.login)
             .bind("authType", authEntity.authType)
-            .bind("question", authEntity.question)
+            .bind("perg", authEntity.perg)
             .bind("identityNo", authEntity.identityNo)
             .executeAndReturnGeneratedKeys()
             .mapTo(Int::class.java)
