@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.domain.auth
+package io.github.lucasschwenke.cabal.accountservice.domain.account
 
 data class Account(
     val username: String,

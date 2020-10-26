@@ -3,7 +3,7 @@ package io.github.lucasschwenke.cabal.accountservice.application
 import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
 import io.github.lucasschwenke.cabal.accountservice.application.config.getRoutes
 import io.github.lucasschwenke.cabal.accountservice.application.modules.loadModules
-import io.github.lucasschwenke.cabal.accountservice.domain.auth.Account
+import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
 import io.github.lucasschwenke.cabal.accountservice.domain.services.CreateAccountService
 import io.vertx.core.Vertx
 import org.koin.core.KoinComponent

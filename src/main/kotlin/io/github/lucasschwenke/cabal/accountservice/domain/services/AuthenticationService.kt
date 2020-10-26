@@ -1,9 +1,8 @@
 package io.github.lucasschwenke.cabal.accountservice.domain.services
 
-import io.github.lucasschwenke.cabal.accountservice.domain.auth.Account
+import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
 import io.github.lucasschwenke.cabal.accountservice.domain.auth.Authentication
 import io.github.lucasschwenke.cabal.accountservice.domain.extensions.toMD5
-import io.github.lucasschwenke.cabal.accountservice.domain.extensions.toSHA1
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import org.jdbi.v3.core.Handle
 import java.time.LocalDateTime
