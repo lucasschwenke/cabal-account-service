@@ -13,11 +13,16 @@ class ChargeAuthService(
     fun createChargeAuth(userNum: Int, handle: Handle): CabalChargeAuth {
         val cabalChargeAuth = CabalChargeAuth(
             userNum = userNum,
-            type = 0,
+            type = INITIAL_TYPE,
             expireDate = now().plusDays(expireAuthDays),
-            payMinutes = 0
+            payMinutes = INITIAL_PAY_MINUTE
         )
 
         return chargeAuthRepository.insertCabalChargeAuth(cabalChargeAuth, handle)
+    }
+
+    companion object {
+        private const val INITIAL_TYPE = 0
+        private const val INITIAL_PAY_MINUTE = 0
     }
 }
