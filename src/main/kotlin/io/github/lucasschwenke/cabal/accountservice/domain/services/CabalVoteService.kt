@@ -1,6 +1,6 @@
 package io.github.lucasschwenke.cabal.accountservice.domain.services
 
-import io.github.lucasschwenke.cabal.accountservice.domain.cabalvote.CabalVote
+import io.github.lucasschwenke.cabal.accountservice.domain.account.CabalVote
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalVoteRepository
 import org.jdbi.v3.core.Handle
 

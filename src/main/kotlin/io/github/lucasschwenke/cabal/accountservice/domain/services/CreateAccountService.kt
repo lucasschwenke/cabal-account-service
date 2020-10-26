@@ -7,6 +7,7 @@ import org.jdbi.v3.core.kotlin.withHandleUnchecked
 class CreateAccountService(
     private val authenticationService: AuthenticationService,
     private val cabalVoteService: CabalVoteService,
+    private val cabalChargeAuthService: ChargeAuthService,
     private val jdbi: Jdbi
 ) {
 
@@ -16,11 +17,10 @@ class CreateAccountService(
             it.begin()
 
             val createdAuthentication = authenticationService.createAuthentication(account, it)
-            cabalVoteService.createCabalVote(
-                createdAuthentication.userNum!!,
-                createdAuthentication.username,
-                it
-            )
+            val userNum = createdAuthentication.userNum!!
+
+            cabalVoteService.createCabalVote(userNum, createdAuthentication.username, it)
+            cabalChargeAuthService.createChargeAuth(userNum, it)
 
             it.commit()
         }

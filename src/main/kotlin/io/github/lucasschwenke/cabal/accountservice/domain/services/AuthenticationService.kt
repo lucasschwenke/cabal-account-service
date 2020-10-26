@@ -1,7 +1,7 @@
 package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
-import io.github.lucasschwenke.cabal.accountservice.domain.auth.Authentication
+import io.github.lucasschwenke.cabal.accountservice.domain.account.Authentication
 import io.github.lucasschwenke.cabal.accountservice.domain.extensions.toMD5
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import org.jdbi.v3.core.Handle

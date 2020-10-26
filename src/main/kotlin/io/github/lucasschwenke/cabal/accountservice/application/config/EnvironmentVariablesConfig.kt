@@ -21,6 +21,8 @@ class EnvironmentVariablesConfig(
     val databaseValidationTimeout = configuration[DATABASE_VALIDATION_TIMEOUT]
     val databaseMaximumPoolSize = configuration[DATABASE_MAXIMUM_POOL_SIZE]
 
+    val expireAuthDays = configuration[EXPIRE_AUTH_DAYS]
+
     companion object {
         private val SERVER_PORT by intType
 
@@ -31,5 +33,6 @@ class EnvironmentVariablesConfig(
         private val DATABASE_TIMEOUT by longType
         private val DATABASE_VALIDATION_TIMEOUT by longType
         private val DATABASE_MAXIMUM_POOL_SIZE by intType
+        private val EXPIRE_AUTH_DAYS by longType
     }
 }

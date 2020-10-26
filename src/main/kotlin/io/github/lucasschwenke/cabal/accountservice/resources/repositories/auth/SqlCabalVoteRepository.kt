@@ -1,6 +1,6 @@
 package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth
 
-import io.github.lucasschwenke.cabal.accountservice.domain.cabalvote.CabalVote
+import io.github.lucasschwenke.cabal.accountservice.domain.account.CabalVote
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalVoteRepository
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.CabalVoteEntity
 import org.jdbi.v3.core.Handle

@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.domain.cabalvote
+package io.github.lucasschwenke.cabal.accountservice.domain.account
 
 data class CabalVote(
     val userNum: Int,

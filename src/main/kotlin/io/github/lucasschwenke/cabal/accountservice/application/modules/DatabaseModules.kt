@@ -4,10 +4,10 @@ import io.github.lucasschwenke.cabal.accountservice.application.config.DatabaseC
 import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalVoteRepository
-import io.github.lucasschwenke.cabal.accountservice.domain.repositories.ChargeAuthRepository
+import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalChargeAuthRepository
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.SqlAuthRepository
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.SqlCabalVoteRepository
-import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.SqlChargeAuthRepository
+import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.SqlCabalChargeAuthRepository
 import org.koin.dsl.module
 
 val databaseModules = module {
@@ -31,7 +31,7 @@ val databaseModules = module {
         SqlCabalVoteRepository()
     }
 
-    single<ChargeAuthRepository> {
-        SqlChargeAuthRepository()
+    single<CabalChargeAuthRepository> {
+        SqlCabalChargeAuthRepository()
     }
 }

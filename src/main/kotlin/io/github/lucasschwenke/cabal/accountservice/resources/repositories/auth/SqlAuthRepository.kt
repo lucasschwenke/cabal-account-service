@@ -1,6 +1,6 @@
 package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth
 
-import io.github.lucasschwenke.cabal.accountservice.domain.auth.Authentication
+import io.github.lucasschwenke.cabal.accountservice.domain.account.Authentication
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.AuthEntity
 import org.jdbi.v3.core.Handle
