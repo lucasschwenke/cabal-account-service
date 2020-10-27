@@ -16,7 +16,7 @@ object RoutesConfig : KoinComponent {
 
     fun getRoutes(vertx: Vertx): Router {
         val router = Router.router(vertx)
-        router.route("/account*").handler(BodyHandler.create())
+        router.route().handler(BodyHandler.create())
 
         router.post("/account").handler {
             val response = createAccountController.createAccount(objectMapper.readValue(it.bodyAsString))
