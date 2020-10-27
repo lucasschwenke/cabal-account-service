@@ -11,18 +11,21 @@ class CreateAccountService(
     private val jdbi: Jdbi
 ) {
 
-    fun createAccount(account: Account) {
+    fun createAccount(account: Account): Account {
 
         jdbi.withHandleUnchecked {
             it.begin()
 
             val createdAuthentication = authenticationService.createAuthentication(account, it)
             val userNum = createdAuthentication.userNum!!
+            val username = createdAuthentication.username
 
-            cabalVoteService.createCabalVote(userNum, createdAuthentication.username, it)
+            cabalVoteService.createCabalVote(userNum, username, it)
             cabalChargeAuthService.createChargeAuth(userNum, it)
 
             it.commit()
         }
+
+        return account
     }
 }

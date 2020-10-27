@@ -1,7 +1,7 @@
 package io.github.lucasschwenke.cabal.accountservice.application.modules
 
-import io.github.lucasschwenke.cabal.accountservice.application.config.DatabaseConfig
-import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
+import io.github.lucasschwenke.cabal.accountservice.application.configs.DatabaseConfig
+import io.github.lucasschwenke.cabal.accountservice.application.configs.EnvironmentVariablesConfig
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalVoteRepository
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalChargeAuthRepository

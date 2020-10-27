@@ -1,18 +1,18 @@
 package io.github.lucasschwenke.cabal.accountservice.application
 
-import io.github.lucasschwenke.cabal.accountservice.application.config.EnvironmentVariablesConfig
-import io.github.lucasschwenke.cabal.accountservice.application.config.getRoutes
+import io.github.lucasschwenke.cabal.accountservice.application.configs.EnvironmentVariablesConfig
+import io.github.lucasschwenke.cabal.accountservice.application.configs.RoutesConfig
 import io.github.lucasschwenke.cabal.accountservice.application.modules.loadModules
-import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
-import io.github.lucasschwenke.cabal.accountservice.domain.services.CreateAccountService
 import io.vertx.core.Vertx
+import io.vertx.core.VertxOptions
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.util.concurrent.TimeUnit
 
 object Application : KoinComponent {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
-    private val createAccountService: CreateAccountService by inject()
+    private val routesConfig: RoutesConfig by inject()
 
     @JvmStatic
     fun start() {
@@ -21,10 +21,26 @@ object Application : KoinComponent {
     }
 
     private fun loadServer() {
-        val vertx = Vertx.vertx()
+        val options = VertxOptions()
+        options.apply {
+            blockedThreadCheckInterval = 5
+            blockedThreadCheckIntervalUnit = TimeUnit.SECONDS
+
+            maxEventLoopExecuteTime = 100
+            maxEventLoopExecuteTimeUnit = TimeUnit.MILLISECONDS
+
+            maxWorkerExecuteTime = 10
+            maxWorkerExecuteTimeUnit = TimeUnit.SECONDS
+
+            warningExceptionTime = 20
+            warningExceptionTimeUnit = TimeUnit.SECONDS
+        }
+
+        val vertx = Vertx.vertx(options)
+
         val server = vertx.createHttpServer()
         val port = environmentVariablesConfig.serverPort
-        val router = getRoutes(vertx)
+        val router = routesConfig.getRoutes(vertx)
 
         server.requestHandler(router).listen(port) {
             if (it.succeeded()) {
@@ -33,15 +49,6 @@ object Application : KoinComponent {
                 println(it.cause())
             }
         }
-
-       createAccountService.createAccount(
-           Account(
-               username = "Test",
-               password = "123mudar",
-               email = "test@test.com",
-               key = "adsasd"
-           )
-       )
     }
 }
 

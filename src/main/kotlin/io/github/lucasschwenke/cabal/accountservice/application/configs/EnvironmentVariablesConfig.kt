@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.application.config
+package io.github.lucasschwenke.cabal.accountservice.application.configs
 
 import com.natpryce.konfig.Configuration
 import com.natpryce.konfig.EnvironmentVariables

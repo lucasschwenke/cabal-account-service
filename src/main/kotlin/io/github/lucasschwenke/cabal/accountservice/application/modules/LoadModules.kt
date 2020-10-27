@@ -7,7 +7,8 @@ fun loadModules() {
         modules(
             applicationModules,
             databaseModules,
-            serviceModules
+            serviceModules,
+            controllerModules
         )
     }
 }
