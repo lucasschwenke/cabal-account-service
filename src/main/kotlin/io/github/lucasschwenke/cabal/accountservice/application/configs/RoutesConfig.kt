@@ -2,7 +2,10 @@ package io.github.lucasschwenke.cabal.accountservice.application.configs
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.github.lucasschwenke.cabal.accountservice.application.web.constants.APPLICATION_JSON_CHARSET_UTF_8
+import io.github.lucasschwenke.cabal.accountservice.application.web.constants.CONTENT_TYPE
 import io.github.lucasschwenke.cabal.accountservice.application.web.controllers.CreateAccountController
+import io.netty.handler.codec.http.HttpResponseStatus
 import io.vertx.core.Vertx
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.BodyHandler
@@ -21,12 +24,10 @@ object RoutesConfig : KoinComponent {
         router.post("/account").handler {
             val response = createAccountController.createAccount(objectMapper.readValue(it.bodyAsString))
             it.response()
-                .setStatusCode(201)
-                .putHeader("content-type", "application/json; charset=utf-8")
+                .setStatusCode(HttpResponseStatus.CREATED.code())
+                .putHeader(CONTENT_TYPE, APPLICATION_JSON_CHARSET_UTF_8)
                 .end(objectMapper.writeValueAsString(response))
         }
-
-
 
         return router
     }

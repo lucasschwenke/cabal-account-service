@@ -1,6 +1,7 @@
 package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
+import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.AccountAlreadyRegisteredException
 import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Handle
@@ -43,7 +44,7 @@ class CreateAccountService(
         }
 
         authenticationService.findUsername(username)?.run {
-            throw RuntimeException("")
+            throw AccountAlreadyRegisteredException("The username $username is already registered.")
         }
     }
 

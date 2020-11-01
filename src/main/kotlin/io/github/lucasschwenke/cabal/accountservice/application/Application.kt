@@ -1,6 +1,7 @@
 package io.github.lucasschwenke.cabal.accountservice.application
 
 import io.github.lucasschwenke.cabal.accountservice.application.configs.EnvironmentVariablesConfig
+import io.github.lucasschwenke.cabal.accountservice.application.configs.FailureHandlerConfig
 import io.github.lucasschwenke.cabal.accountservice.application.configs.RoutesConfig
 import io.github.lucasschwenke.cabal.accountservice.application.modules.loadModules
 import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
@@ -16,6 +17,7 @@ object Application : KoinComponent, LoggableClass() {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
     private val routesConfig: RoutesConfig by inject()
+    private val failureHandler: FailureHandlerConfig by inject()
 
     fun start() {
         LoggerContext.initContext("app-startup")
@@ -24,26 +26,11 @@ object Application : KoinComponent, LoggableClass() {
     }
 
     private fun loadServer() {
-        val options = VertxOptions()
-        options.apply {
-            blockedThreadCheckInterval = 5
-            blockedThreadCheckIntervalUnit = TimeUnit.SECONDS
-
-            maxEventLoopExecuteTime = 100
-            maxEventLoopExecuteTimeUnit = TimeUnit.MILLISECONDS
-
-            maxWorkerExecuteTime = 10
-            maxWorkerExecuteTimeUnit = TimeUnit.SECONDS
-
-            warningExceptionTime = 20
-            warningExceptionTimeUnit = TimeUnit.SECONDS
-        }
-
+        val options = configureOptions()
         val vertx = Vertx.vertx(options)
-
         val server = vertx.createHttpServer()
         val port = environmentVariablesConfig.serverPort
-        val router = routesConfig.getRoutes(vertx)
+        val router = configureRoutes(vertx)
 
         server.requestHandler(router).listen(port) {
             if (it.succeeded()) {
@@ -57,4 +44,21 @@ object Application : KoinComponent, LoggableClass() {
             }
         }
     }
+
+    private fun configureOptions() = VertxOptions().apply {
+        blockedThreadCheckInterval = 5
+        blockedThreadCheckIntervalUnit = TimeUnit.SECONDS
+
+        maxEventLoopExecuteTime = 100
+        maxEventLoopExecuteTimeUnit = TimeUnit.MILLISECONDS
+
+        maxWorkerExecuteTime = 10
+        maxWorkerExecuteTimeUnit = TimeUnit.SECONDS
+
+        warningExceptionTime = 20
+        warningExceptionTimeUnit = TimeUnit.SECONDS
+    }
+
+    private fun configureRoutes(vertx: Vertx) = routesConfig.getRoutes(vertx)
+        .also { failureHandler.handle(it) }
 }
