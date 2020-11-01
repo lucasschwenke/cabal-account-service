@@ -32,7 +32,7 @@ class CabalVoteService(
         return cabalVoteRepository.insertCabalVote(cabalVote, handle)
     }
 
-    companion object: LoggableClass() {
+    companion object : LoggableClass() {
         private const val TOP_GAMES_INITIAL_VALUE = 0
         private const val XTREME_INITIAL_VALUE = 0
         private const val GAMES_SITES_INITIAL_VALUE = 0
