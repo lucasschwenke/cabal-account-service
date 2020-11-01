@@ -27,7 +27,7 @@ class ChargeAuthService(
         return chargeAuthRepository.insertCabalChargeAuth(cabalChargeAuth, handle)
     }
 
-    companion object: LoggableClass() {
+    companion object : LoggableClass() {
         private const val INITIAL_TYPE = 0
         private const val INITIAL_PAY_MINUTE = 0
     }
