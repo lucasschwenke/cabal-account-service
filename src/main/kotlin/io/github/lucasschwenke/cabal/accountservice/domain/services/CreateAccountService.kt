@@ -71,7 +71,7 @@ class CreateAccountService(
         }
 
     private fun createChargeAuth(userNum: Int, username: String, handle: Handle) =
-        cabalChargeAuthService.createChargeAuth(userNum, handle).also {
+        cabalChargeAuthService.createChargeAuth(userNum, username, handle).also {
             logger.debug(LogTags.SERVICE, LogTags.SERVICE) {
                 "Charge auth created for the username $username"
             }
