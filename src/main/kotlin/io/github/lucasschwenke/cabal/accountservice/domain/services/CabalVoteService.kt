@@ -2,6 +2,8 @@ package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.CabalVote
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalVoteRepository
+import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Handle
 
 class CabalVoteService(
@@ -13,6 +15,10 @@ class CabalVoteService(
         username: String,
         handle: Handle
     ): CabalVote {
+        logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
+            "Configuring new cabal vote for username $username"
+        }
+
         val cabalVote = CabalVote(
             userNum = userNum,
             username = username,
@@ -26,11 +32,11 @@ class CabalVoteService(
         return cabalVoteRepository.insertCabalVote(cabalVote, handle)
     }
 
-    companion object {
+    companion object: LoggableClass() {
         private const val TOP_GAMES_INITIAL_VALUE = 0
         private const val XTREME_INITIAL_VALUE = 0
         private const val GAMES_SITES_INITIAL_VALUE = 0
-        private val TOP_G_INITIAL_VALUE = 0
-        private val QTD_VOTE_INITIAL_VALUE = 0
+        private const val TOP_G_INITIAL_VALUE = 0
+        private const val QTD_VOTE_INITIAL_VALUE = 0
     }
 }
