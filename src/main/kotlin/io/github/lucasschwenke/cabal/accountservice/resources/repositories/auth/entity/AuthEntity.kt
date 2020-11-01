@@ -1,5 +1,6 @@
 package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity
 
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class AuthEntity(
@@ -16,7 +17,7 @@ data class AuthEntity(
     val lastIp: String? = null,
     val authKey: String? = null,
     val nationCode: Int? = null,
-    val createDate: LocalDateTime? = null,
+    val createDate: LocalDate? = null,
     val email: String? = null,
     val ip: String? = null,
     val question: String? = null,

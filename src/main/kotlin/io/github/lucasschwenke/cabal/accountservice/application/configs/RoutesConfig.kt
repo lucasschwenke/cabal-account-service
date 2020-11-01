@@ -26,9 +26,8 @@ object RoutesConfig : KoinComponent {
                 .end(objectMapper.writeValueAsString(response))
         }
 
+
+
         return router
     }
 }
-
-
-

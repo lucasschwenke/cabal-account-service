@@ -2,9 +2,11 @@ package io.github.lucasschwenke.cabal.accountservice.application.configs
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Jdbi
 
-object DatabaseConfig {
+object DatabaseConfig : LoggableClass() {
 
     fun connect(
         databaseJdbcUrl: String,
@@ -15,6 +17,9 @@ object DatabaseConfig {
         databaseValidationTimeout: Long,
         databaseMaximumPoolSize: Int
     ): Jdbi {
+        logger.debug(LogTags.CONFIGURATION, LogTags.DATABASE) {
+            "connecting in account database with the follow jdbcUrl: $databaseJdbcUrl"
+        }
 
         val config = HikariConfig().apply {
             this.jdbcUrl = databaseJdbcUrl
@@ -27,8 +32,9 @@ object DatabaseConfig {
         }
 
         return Jdbi.create(HikariDataSource(config)).also {
-            print("connected!")
+            logger.info(LogTags.CONFIGURATION, LogTags.DATABASE) {
+                "database connected and configured!!!"
+            }
         }
-
     }
 }
