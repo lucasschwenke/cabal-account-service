@@ -66,5 +66,24 @@ class SqlCabalAuthRepository(
         }
     }
 
+    override fun findByEmail(email: String): Authentication? {
+        logger.info(LogTags.REPOSITORY) {
+            "Finding email $email in cabal_auth table..."
+        }
+
+        val query = ClasspathSqlLocator.create().locate("sql.auth.select_auth_by_email")
+
+        return jdbi.withHandleUnchecked {
+            it.createQuery(query)
+                .bind("email", email)
+                .map(AuthEntityMapper())
+                .firstOrNull()?.toAuthentication().also {
+                    logger.info(LogTags.REPOSITORY) {
+                        "email $email was found in cabal_auth table!"
+                    }
+                }
+        }
+    }
+
     companion object : LoggableClass()
 }

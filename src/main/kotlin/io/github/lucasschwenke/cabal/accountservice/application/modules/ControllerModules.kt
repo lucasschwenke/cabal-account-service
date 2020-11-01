@@ -7,7 +7,8 @@ val controllerModules = module {
 
     single {
         CreateAccountController(
-            createAccountService = get()
+            createAccountService = get(),
+            validator = get()
         )
     }
 }

@@ -44,7 +44,7 @@ object FailureHandlerConfig : KoinComponent, LoggableClass() {
         val response = ErrorResponse(
             apiError = ApiError.INTERNAL_SERVER_ERROR,
             message = "An error occurred, please contact the server administrator.",
-            details = mapOf("Error" to listOf(throwable.localizedMessage))
+            details = mapOf("error" to listOf(throwable.localizedMessage))
         )
 
         routingContext.response()
@@ -55,7 +55,7 @@ object FailureHandlerConfig : KoinComponent, LoggableClass() {
 
     private fun errorLog(throwable: Throwable) {
         logger.error(throwable, LogTags.EXCEPTION) {
-            "The follow exception has occurred"
+            "The follow exception has occurred:"
         }
     }
 }

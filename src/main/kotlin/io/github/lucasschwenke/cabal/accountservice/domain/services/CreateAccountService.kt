@@ -16,11 +16,11 @@ class CreateAccountService(
 ) {
 
     fun createAccount(account: Account): Account {
-        checkAccountAlreadyRegistered(account.username)
+        checkAccountAlreadyRegistered(account.username, account.email)
 
         jdbi.withHandleUnchecked {
             it.begin().also {
-                logger.debug(LogTags.SERVICE, LogTags.SERVICE) {
+                logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
                     "Starting the creation for a new account for the username ${account.username}"
                 }
             }
@@ -38,26 +38,34 @@ class CreateAccountService(
         return account
     }
 
-    private fun checkAccountAlreadyRegistered(username: String) {
-        logger.debug(LogTags.SERVICE, LogTags.SERVICE) {
+    private fun checkAccountAlreadyRegistered(username: String, email: String) {
+        logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
             "Checking if the username $username is already registered...."
         }
 
         authenticationService.findUsername(username)?.run {
             throw AccountAlreadyRegisteredException("The username $username is already registered.")
         }
+
+        logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
+            "Checking if the email $email is already registered...."
+        }
+
+        authenticationService.findEmail(email)?.run {
+            throw AccountAlreadyRegisteredException("The email $email is already registered.")
+        }
     }
 
     private fun createAuthentication(account: Account, handle: Handle) =
         authenticationService.createAuthentication(account, handle).also {
-            logger.debug(LogTags.SERVICE, LogTags.SERVICE) {
+            logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
                 "Authentication created for the username ${account.username}"
             }
         }
 
     private fun createCabalVote(userNum: Int, username: String, handle: Handle) =
         cabalVoteService.createCabalVote(userNum, username, handle).also {
-            logger.debug(LogTags.SERVICE, LogTags.SERVICE) {
+            logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
                 "Cabal vote created for the username $username"
             }
         }
