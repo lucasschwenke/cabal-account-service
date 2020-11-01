@@ -8,7 +8,8 @@ fun loadModules() {
             applicationModules,
             databaseModules,
             serviceModules,
-            controllerModules
+            controllerModules,
+            validatorModules
         )
     }
 }

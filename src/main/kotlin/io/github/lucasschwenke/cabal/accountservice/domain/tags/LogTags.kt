@@ -10,4 +10,5 @@ object LogTags {
     const val SERVICE = "service"
     const val CREATE_ACCOUNT = "create_account"
     const val EXCEPTION = "exception"
+    const val VALIDATION = "validation"
 }

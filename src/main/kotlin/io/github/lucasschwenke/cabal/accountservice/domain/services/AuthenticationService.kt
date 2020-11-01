@@ -44,6 +44,14 @@ class AuthenticationService(
         return authRepository.findByUsername(username)
     }
 
+    fun findEmail(email: String): Authentication? {
+        logger.debug(LogTags.SERVICE) {
+            "Finding email $email..."
+        }
+
+        return authRepository.findByEmail(email)
+    }
+
     private fun generateHash(username: String): String {
         logger.debug(LogTags.SERVICE, LogTags.CREATE_ACCOUNT) {
             "Generating hash for the username $username"

@@ -6,6 +6,6 @@ import org.jdbi.v3.core.Handle
 interface AuthRepository {
 
     fun insertAuth(authentication: Authentication, handle: Handle): Authentication
-
     fun findByUsername(username: String): Authentication?
+    fun findByEmail(email: String): Authentication?
 }
