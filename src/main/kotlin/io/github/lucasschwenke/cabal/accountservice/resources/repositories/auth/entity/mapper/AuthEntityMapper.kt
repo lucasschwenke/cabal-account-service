@@ -2,6 +2,7 @@ package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth
 
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.AuthEntity
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.extensions.toLocalDateTime
+import io.github.lucasschwenke.cabal.accountservice.resources.repositories.extensions.toLocalDateWithUtc
 import org.jdbi.v3.core.mapper.RowMapper
 import org.jdbi.v3.core.statement.StatementContext
 import java.sql.ResultSet
@@ -23,7 +24,7 @@ class AuthEntityMapper : RowMapper<AuthEntity> {
             lastIp = rs.getString("lastIp"),
             authKey = rs.getString("authKey"),
             nationCode = rs.getInt("nationCode"),
-            createDate = rs.getDate("createDate")?.toLocalDate(),
+            createDate = rs.getDate("createDate")?.toLocalDateWithUtc(),
             email = rs.getString("email"),
             ip = rs.getString("ip"),
             question = rs.getString("question"),

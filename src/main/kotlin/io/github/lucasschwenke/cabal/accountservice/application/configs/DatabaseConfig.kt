@@ -2,7 +2,7 @@ package io.github.lucasschwenke.cabal.accountservice.application.configs
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Jdbi
 

@@ -9,6 +9,6 @@ fun Date.toLocalDateTime(): LocalDateTime = this.toInstant()
     .atZone(ZoneId.of("UTC-3"))
     .toLocalDateTime()
 
-fun Date.toLocalDate(): LocalDate = this.toInstant()
+fun Date.toLocalDateWithUtc(): LocalDate = this.toInstant()
     .atZone(ZoneId.of("UTC-3"))
     .toLocalDate()

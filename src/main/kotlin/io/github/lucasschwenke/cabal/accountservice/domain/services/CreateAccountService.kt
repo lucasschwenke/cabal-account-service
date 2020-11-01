@@ -2,7 +2,7 @@ package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.Account
 import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.AccountAlreadyRegisteredException
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi

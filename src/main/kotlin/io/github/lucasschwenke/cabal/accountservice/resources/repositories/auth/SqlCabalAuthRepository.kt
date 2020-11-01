@@ -2,7 +2,7 @@ package io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.Authentication
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.AuthRepository
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.AuthEntity
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.extensions.toAuthentication
 import io.github.lucasschwenke.cabal.accountservice.resources.repositories.auth.entity.mapper.AuthEntityMapper
@@ -17,6 +17,10 @@ class SqlCabalAuthRepository(
 ) : AuthRepository {
 
     override fun insertAuth(authentication: Authentication, handle: Handle): Authentication {
+        logger.debug(LogTags.REPOSITORY) {
+            "creating new auth in insert_auth table for the username ${authentication.username}"
+        }
+
         val authEntity = AuthEntity(
             id = authentication.username,
             password = authentication.password,
@@ -48,7 +52,7 @@ class SqlCabalAuthRepository(
     }
 
     override fun findByUsername(username: String): Authentication? {
-        logger.info(LogTags.REPOSITORY) {
+        logger.debug(LogTags.REPOSITORY) {
             "Finding username $username in cabal_auth table..."
         }
 
@@ -67,7 +71,7 @@ class SqlCabalAuthRepository(
     }
 
     override fun findByEmail(email: String): Authentication? {
-        logger.info(LogTags.REPOSITORY) {
+        logger.debug(LogTags.REPOSITORY) {
             "Finding email $email in cabal_auth table..."
         }
 
