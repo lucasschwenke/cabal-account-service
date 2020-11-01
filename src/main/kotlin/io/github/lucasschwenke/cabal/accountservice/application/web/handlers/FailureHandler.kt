@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.application.configs
+package io.github.lucasschwenke.cabal.accountservice.application.web.handlers
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.lucasschwenke.cabal.accountservice.application.web.constants.APPLICATION_JSON_CHARSET_UTF_8
@@ -6,7 +6,7 @@ import io.github.lucasschwenke.cabal.accountservice.application.web.constants.CO
 import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.ApiError
 import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.ApiException
 import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.ErrorResponse
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 import io.netty.handler.codec.http.HttpResponseStatus
 import io.vertx.ext.web.Router
@@ -14,7 +14,7 @@ import io.vertx.ext.web.RoutingContext
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-object FailureHandlerConfig : KoinComponent, LoggableClass() {
+object FailureHandler : KoinComponent, LoggableClass() {
 
     private val objectMapper: ObjectMapper by inject()
 

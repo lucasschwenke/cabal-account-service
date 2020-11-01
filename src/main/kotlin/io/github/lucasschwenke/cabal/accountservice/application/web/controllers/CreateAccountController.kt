@@ -6,7 +6,7 @@ import io.github.lucasschwenke.cabal.accountservice.application.web.responses.Cr
 import io.github.lucasschwenke.cabal.accountservice.application.web.validators.Validator
 import io.github.lucasschwenke.cabal.accountservice.domain.exceptions.InvalidRequestException
 import io.github.lucasschwenke.cabal.accountservice.domain.services.CreateAccountService
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 
 class CreateAccountController(

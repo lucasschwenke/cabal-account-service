@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.domain.tags
+package io.github.lucasschwenke.cabal.accountservice.domain.logs
 
 object LogTags {
 

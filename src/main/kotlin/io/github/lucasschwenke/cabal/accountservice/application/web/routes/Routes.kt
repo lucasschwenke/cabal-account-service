@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.application.configs
+package io.github.lucasschwenke.cabal.accountservice.application.web.routes
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -12,7 +12,7 @@ import io.vertx.ext.web.handler.BodyHandler
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-object RoutesConfig : KoinComponent {
+object Routes : KoinComponent {
 
     private val objectMapper: ObjectMapper by inject()
     private val createAccountController: CreateAccountController by inject()

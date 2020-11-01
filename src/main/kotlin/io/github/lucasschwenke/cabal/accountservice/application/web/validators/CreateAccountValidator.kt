@@ -1,10 +1,10 @@
 package io.github.lucasschwenke.cabal.accountservice.application.web.validators
 
-import io.github.lucasschwenke.cabal.accountservice.application.web.extensions.isInvalidEmail
-import io.github.lucasschwenke.cabal.accountservice.application.web.extensions.isInvalidLength
-import io.github.lucasschwenke.cabal.accountservice.application.web.extensions.isNullOrBlank
+import io.github.lucasschwenke.cabal.accountservice.application.extensions.isInvalidEmail
+import io.github.lucasschwenke.cabal.accountservice.application.extensions.isInvalidLength
+import io.github.lucasschwenke.cabal.accountservice.application.extensions.isNullOrBlank
 import io.github.lucasschwenke.cabal.accountservice.application.web.requests.CreateAccountRequest
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 
 class CreateAccountValidator : Validator<CreateAccountRequest> {

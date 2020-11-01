@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.14.2"
         classpath "com.github.jengelman.gradle.plugins:shadow:4.0.3"
@@ -23,7 +23,7 @@ apply plugin: "com.github.johnrengelman.shadow"
 
 group = 'io.github.lucasschwenke.cabal.accountservice'
 version = '1.0.0-SNAPSHOT'
-mainClassName ='io.github.lucasschwenke.cabal.accountservice.application.Main'
+mainClassName ='io.vertx.core.Launcher'
 
 repositories {
     mavenCentral()
@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     //env
     implementation 'com.natpryce:konfig:1.6.10.0'

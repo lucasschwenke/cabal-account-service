@@ -2,7 +2,7 @@ package io.github.lucasschwenke.cabal.accountservice.domain.services
 
 import io.github.lucasschwenke.cabal.accountservice.domain.account.CabalChargeAuth
 import io.github.lucasschwenke.cabal.accountservice.domain.repositories.CabalChargeAuthRepository
-import io.github.lucasschwenke.cabal.accountservice.domain.tags.LogTags
+import io.github.lucasschwenke.cabal.accountservice.domain.logs.LogTags
 import io.github.lucasschwenke.logging.LoggableClass
 import org.jdbi.v3.core.Handle
 import java.time.LocalDateTime.now

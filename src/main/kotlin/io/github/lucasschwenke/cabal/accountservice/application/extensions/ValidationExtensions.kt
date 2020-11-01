@@ -1,4 +1,4 @@
-package io.github.lucasschwenke.cabal.accountservice.application.web.extensions
+package io.github.lucasschwenke.cabal.accountservice.application.extensions
 
 import io.github.lucasschwenke.cabal.accountservice.application.web.validators.Validation
 import java.util.regex.Pattern.compile
